@@ -1,0 +1,82 @@
+:root {
+    --max-count: 1;
+}
+
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    background: hsl(0, 0%, 13%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+body > .box {
+    transform-style: preserve-3d;
+    animation: rotate-animation linear 25s infinite;
+}
+
+body > .box > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+
+    transform: translate(-50%, -50%) rotateX(calc(var(--i) * calc(360deg / var(--max-count)))) translateZ(150px);
+    transform-style: preserve-3d;
+
+    text-transform: uppercase;
+    font-size: 5rem;
+    font-weight: 900;
+
+    color: white;
+    background: hsla(0, 0%, 0%, 0.15);
+    line-height: .75;
+}
+
+body > .box > span > i {
+    font-style: normal;
+    color: white;
+
+    /*animation: hue-transform linear 5s infinite;*/
+}
+
+body > .box > span > i:nth-of-type(1) {
+    color: hsl(339, 100%, 57%);
+}
+
+body > .box > span > i:nth-of-type(3) {
+    color: hsl(198, 100%, 54%);
+}
+
+@keyframes rotate-animation {
+    from {
+        transform: perspective(1000px) rotateX(0deg) rotate(25deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(360deg) rotate(25deg);
+    }
+}
+
+@keyframes hue-transform {
+    from {
+        filter: hue-rotate(calc(var(--i) * 4deg));
+    }
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
